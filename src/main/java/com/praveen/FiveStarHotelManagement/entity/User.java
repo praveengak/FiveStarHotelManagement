@@ -29,9 +29,14 @@ public class User implements UserDetails {
 
     @NotNull(message =  "Phone Number is required")
     private String phoneNumber;
+
+    @NotNull(message = "Password is required")
     private String password;
+
     private String role;
 
+    //one user can have many booking
+    @OneToMany(mappedBy = "user",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Booking> bookings = new ArrayList<>();
 
     @Override
