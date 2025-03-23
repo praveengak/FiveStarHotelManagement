@@ -2,6 +2,7 @@ package com.praveen.FiveStarHotelManagement.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.Cascade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,8 @@ public class Room {
     private String roomPrice;
     private String roomPhotoUrl;
     private String roomDescription;
+
+    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Booking> bookings = new ArrayList<>();
 
     @Override
@@ -33,5 +36,4 @@ public class Room {
                 ", roomDescription='" + roomDescription + '\'' +
                 '}';
     }
-
 }
